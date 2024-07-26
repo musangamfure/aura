@@ -1,0 +1,78 @@
+<%= form_with(model: note, class: "contents") do |form| %>
+  <% if note.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
+
+      <ul>
+        <% note.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="flex flex-col my-4">
+    <%= form.label :title %>
+    <%= form.text_field :title,  class:'rounded-md border border-black mt-1 focus:ring-black' %>
+  </div>
+
+   <div class="flex flex-col my-4">
+    <%= form.label :description %>
+    <%= form.text_area :description, rows:5, class:'rounded-md border border-black mt-1 focus:ring-black' %>
+  </div>
+
+  <div class="flex flex-col my-4">
+    <%= form.label :color, 'Select color' %>
+    <div class="flex gap-4 my-1">
+      <label class="flex items-center gap-1">
+        <%= form.radio_button :color, 'bg-amber-300', class:'hidden' %>
+        <div class="color-option bg-amber-300 h-8 w-8 rounded">
+        </div>
+      </label>
+
+      <label class="flex items-center gap-1">
+        <%= form.radio_button :color, 'bg-blue-300', class:'hidden' %>
+        <div class="color-option bg-blue-300 h-8 w-8 rounded">
+        </div>
+      </label>
+
+      <label class="flex items-center gap-1">
+        <%= form.radio_button :color, 'bg-red-300', class:'hidden' %>
+        <div class="color-option bg-red-300 h-8 w-8 rounded">
+        </div>
+      </label>
+
+      <label class="flex items-center gap-1">
+        <%= form.radio_button :color, 'bg-lime-300', class:'hidden' %>
+        <div class="color-option bg-lime-300 h-8 w-8 rounded">
+        </div>
+      </label>
+
+      <label class="flex items-center gap-1">
+        <%= form.radio_button :color, 'bg-teal-300', class:'hidden' %>
+        <div class="color-option bg-teal-300 h-8 w-8 rounded">
+        </div>
+      </label>
+
+      <label class="flex items-center gap-1">
+        <%= form.radio_button :color, 'bg-violet-300', class:'hidden' %>
+        <div class="color-option bg-violet-300 h-8 w-8 rounded">
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "mt-2 border border-black bg-black text-white rounded-md py-3 px-6 hover:bg-gray-700" %>
+  </div>
+<% end %>
+
+<style>
+  .color-option {
+    cursor: pointer;
+  }
+
+  input[type="radio"]:checked + .color-option {
+    border: 2px solid black;
+  }
+</style>

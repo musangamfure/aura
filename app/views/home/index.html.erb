@@ -1,0 +1,25 @@
+<% if user_signed_in? && @notes.count > 0%>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+
+    <div id="notes" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <%= link_to new_note_path, class:"flex flex-col gap-2 text-xl items-center place-content-center border border-dashed border-black rounded-md p-4 hover:border-solid hover:-ml-1 hover:-mt-1 hover:border-r-4 hover:border-b-4" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        Add Note
+      <% end %>
+
+      <% @notes.each do |note| %>
+        <%= link_to note_path(note.id), class:"border border-black rounded-md p-4 #{note.color} hover:-ml-1 hover:-mt-1 hover:border-r-4 hover:border-b-4" do %>
+          <div class="">
+            <p class="text-2xl"><%= note.title.truncate(24) %><p>
+            <p class="text-sm text-gray-600 font-medium"><%= note.created_at.strftime("%d %b") %><p>
+            <p class="mt-3 text-gray-800"><%= note.description.truncate(100) %><p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <%= render 'home/landing' %>
+<% end %>

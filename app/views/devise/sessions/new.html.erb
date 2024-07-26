@@ -1,0 +1,35 @@
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
+  <div class="flex flex-col items-center justify-center">
+    <%= link_to 'Aura Notes', root_path, class:'font-medium text-3xl py-8' %>
+
+    <div class="border border-black rounded-md flex flex-col items-center py-4 px-6">
+      <h2 class="font-medium text-2xl mb-6">Log in</h2>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="flex flex-col my-4 min-w-96">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'rounded-md border border-black mt-1 focus:ring-black' %>
+        </div>
+
+        <div class="flex flex-col my-4">
+          <%= f.label :password %>
+          <%= f.password_field :password, autocomplete: "current-password", class:'rounded-md border border-black mt-1 focus:ring-black' %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me, class:'h-4 w-4 rounded border-black text-black focus:ring-black' %>
+            <%= f.label :remember_me, class:'ms-1' %>    
+          </div>
+        <% end %>
+
+        <div class="flex flex-col items-center mb-4 mt-12">
+          <%= f.submit "Log in", class:'bg-black text-white rounded-md py-2 px-6 hover:bg-gray-700' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="mt-6">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
